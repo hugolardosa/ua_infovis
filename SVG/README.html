@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="svg-introduction">SVG Introduction</h1>
+<h2 id="outline">Outline</h2>
+<ul>
+<li>Presentation attributes</li>
+<li>Basic Shapes</li>
+<li>Image Element</li>
+<li>Path and Curves</li>
+<li>Text</li>
+<li>Animation</li>
+<li>Path and text</li>
+<li>Miscellaneous</li>
+</ul>
+<h2 id="fill-and-stroke"><em>fill</em> and <em>stroke</em></h2>
+<p>Save the code below in a <code>html</code> file
+and load it.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"300"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span> Exercise 1.1 <span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span> SVG First Example <span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"150"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<p>Add the attributes <code>stroke=&quot;black&quot;</code> and <code>fill=&quot;lightgrey&quot;</code> and see the changes. Try to modify the example to obtain the results of the image below, manipulating <em>fill</em> and <em>stroke</em> options (fill, fill-opacity, fill-rule, stroke, stroke-width, stroke-opacity, strokedasharray). More <a href="http://www.w3.org/TR/SVG/painting.html">here</a>.</p>
+<p><img src="./images/expected_result_fill_stroke.png" alt="Results of fill and stroke"></p>
+<h2 id="basic-shapes">Basic shapes</h2>
+<p>Create a new SVG file with four shapes of the following table (between them a polyline and a polygon). Experiment with zoom-in and zoom-out, observe what happens compared with raster images. More <a href="http://www.w3.org/TR/SVG/shapes.html">here</a></p>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Tag</th>
+<th>Mandatory attribute</th>
+<th>Optional attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line</td>
+<td><code>&lt;line&gt;</code></td>
+<td>(none)</td>
+<td><code>x1, x2, y1, y2</code></td>
+</tr>
+<tr>
+<td>Rectangle</td>
+<td><code>&lt;rect&gt;</code></td>
+<td><code>width, height</code></td>
+<td><code>x, y, rx, ry</code></td>
+</tr>
+<tr>
+<td>Circle</td>
+<td><code>&lt;circle&gt;</code></td>
+<td><code>r</code></td>
+<td><code>cx, cy</code></td>
+</tr>
+<tr>
+<td>Ellipse</td>
+<td><code>&lt;ellipse&gt;</code></td>
+<td><code>rx, ry</code></td>
+<td><code>cx, cy</code></td>
+</tr>
+<tr>
+<td>Polyline</td>
+<td><code>&lt;polyline&gt;</code></td>
+<td>points</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Polygon</td>
+<td><code>&lt;polygon&gt;</code></td>
+<td>points</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional">Optional</h3>
+<p>Replicate the figures of the image below using SVG.</p>
+<p><img src="./images/optional_shapes.jpg" alt="Optional shapes"></p>
+<h2 id="transforms">Transforms</h2>
+<p>Use the <code>transform</code> attribute to apply a 1/2 scale factor to one of the rects created, rotate it by 45 degrees and apply a translation of <code>(-20,10)</code>. More <a href="http://www.w3.org/TR/SVG/coords.html">here</a></p>
+<h2 id="images">Images</h2>
+<p>Modify an example to load and show an image inside the SVG area. More <a href="http://www.w3.org/TR/SVG/struct.html">here</a></p>
+<h2 id="path-and-curves">Path and curves</h2>
+<p>Use the <code>path</code> element with the <code>L</code> option to get the jar of figure below. More <a href="http://www.w3.org/1999/07/30/WD-SVG-19990730/paths.html">here</a>.</p>
+<p><img src="./images/jar.jpg" alt="SVG Jar"></p>
+<p>Modify the jar using the <code>Q</code> (Quadratic Bézier) to obtain the curved jar. Visualize it side by side.</p>
+<h3 id="optional">Optional</h3>
+<p>Create a figure that shows simplified flags of four countries in a table two by two. Add countries images to show it side by side with its flag.</p>
+<h2 id="text">Text</h2>
+<p>Save the excerpt below in a <code>html</code> file
+and load it.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span> Exercicio 1.1<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span> Exemplo de texto <span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"350"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"30"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">font-size</span>=<span class="hljs-string">"10"</span>&gt;</span>
+ Hello World
+<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+</div></code></pre>
+<p>Try to get a red text with size 12 and a Verdana font.</p>
+<p>Now create a red circular annoucement with a text that shows: &quot;SVG is to graphics what HTML is to text&quot; like the image below:</p>
+<p><img src="./images/svg_red_circle_text.jpg" alt="SVG text"></p>
+<p>Enrich the example using some properties of the element, like <code>tspan</code> to increase the characters spacing difference to put the second character lower. More <a href="http://www.w3.org/TR/SVG/text.html">here</a>.</p>
+<h2 id="animation">Animation</h2>
+<p>Modify the example to change the text size in the center of the circle alternating on two sizes, simulating a pulsating heart, using the animation like this:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">animate</span> <span class="hljs-attr">attributeName</span>=<span class="hljs-string">"x"</span> <span class="hljs-attr">values</span>=<span class="hljs-string">"10;20;10"</span> <span class="hljs-attr">dur</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">repeatCount</span>=<span class="hljs-string">"indefinite"</span>/&gt;</span>
+</div></code></pre>
+<p>Transform the circle in a heart using a cubic bézier spline.
+Try animating other attributes (color, character position). More <a href="https://www.w3.org/TR/SVG/animate.html">here</a>.</p>
+<h3 id="event-animation">Event animation</h3>
+<p>Use the <code>begin</code> element on the animation to allow the animation to start on click (<code>onclick</code>) in the text on in the circle. More <a href="https://www.w3.org/TR/SVG/interact.html#SVGEvents">here</a></p>
+<h2 id="path-and-text">Path and text</h2>
+<p>Use <code>textpath</code> to modify the text below the circle like the following image. More <a href="http://www.w3.org/TR/SVG/text.html#TextPathElement">here</a>, <a href="https://www.w3.org/TR/SVG/paths.html#PathDataEllipticalArcCommands">here</a> and <a href="http://www.w3schools.com/svg/svg_path.asp">here</a></p>
+<p><img src="./images/circling_text.jpg" alt="Path and text"></p>
+<h3 id="animating-through-path">Animating through path</h3>
+<p>In a <code>textpath</code> element, add an animation using the <code>startOffset</code> attribute, allowing the text animation through the path. You can use the <code>animateMotion</code> to move a element (text, primitive) through a defined path.</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<h3 id="hyperlinks">Hyperlinks</h3>
+<p>Use the <code>&lt;a&gt;</code> tag to link with pages.</p>
+<h3 id="group-tag">Group tag</h3>
+<p>Use the <code>&lt;g&gt;</code> tag to group different elements. They will share some elements and can be changed simultaneously.</p>
+
+</body>
+</html>
