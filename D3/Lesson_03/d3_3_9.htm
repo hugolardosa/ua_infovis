@@ -1,0 +1,122 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v6.js"></script>
+    <script>
+        let width = 500;
+        let height = 300;
+        let margin = 50;
+
+        function draw(data) {
+            let w = 500,
+                h = 400;
+
+            let svg = d3.select('body').append('svg')
+                .attr('width', w)
+                .attr('height', h);
+
+            // The scale does not have extent, as it need all the values
+            let x_extent = data.map(d => d.Ano);
+            let x_scale = d3.scalePoint()
+                .range([margin, width - margin]) //change this, is from margin to margin + width 1ano ... 5ano
+                .domain(x_extent);
+            let x_axis = d3.axisBottom(x_scale);
+
+            let y_extent = d3.extent(data, d => d.Numero_de_Alunos);
+            let y_scale = d3.scaleLinear()
+                .range([height - margin, margin])
+                .domain([0, y_extent[1]]);
+            let y_axis = d3.axisLeft(y_scale);
+
+            let circles = svg.selectAll("circle")
+                .data(data)
+                .join("circle")
+                .attr("cx", d => x_scale(d.Ano))
+                .attr("cy", d => y_scale(d.Numero_de_Alunos))
+                .attr("r", 10);
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (height - margin) + ")")
+                .call(x_axis);
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + (margin) + ",0)")
+                //.attr("transform", "translate(0," + (width - margin) + ")")
+                .call(y_axis);
+
+            svg.append("text")
+                .text(function(d) {
+                    return "Alunos do MIECT";
+                })
+                .attr("x", (width - margin) / 2)
+                .attr("y", 10).style("text-anchor", "left")
+                .style("stroke", "red")
+                .style("fill", "red");
+
+            svg.append("text")
+                .text(function(d) {
+                    return "Anos de curso";
+                })
+                .attr("x", (width - margin) / 2)
+                .attr("y", height - margin + 40).style("text-anchor", "left")
+                .style("stroke", "black")
+                .style("fill", "black");
+
+            svg.append("text")
+                .text(function(d) {
+                    return "N. de alunos";
+                })
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("transform", "rotate(-90)")
+                .attr("transform", "translate(0," + height / 2 +
+                    ")")
+                .style("text-anchor", "end")
+
+            .style("stroke", "black")
+                .style("fill", "black");
+
+        }
+    </script>
+    <style>
+        .axis path {
+            fill: none;
+            stroke: black;
+        }
+        
+        .axis {
+            font-size: 8pt;
+            font-family: sans-serif;
+        }
+        
+        .tick {
+            fill: none;
+            stroke: black;
+        }
+        
+        circle {
+            stroke: black;
+            stroke-width: 0.5px;
+            fill: RoyalBlue;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        d3.json("MIECT_Alunos_Ano.json").then(draw).catch(function(err) {
+                console.log(err)
+            }
+
+        );
+    </script>
+</body>
+
+</html>
