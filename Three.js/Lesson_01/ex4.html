@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+    <title>My first three.js app</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+    <script>
+        // sleep time expects milliseconds
+        function sleep(time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0xff0000);
+
+        document.body.appendChild(renderer.domElement);
+
+
+        var geometry = new THREE.BufferGeometry();
+        const vertices = new Float32Array([
+        0.0,  0.0,  0.0, 0.5,  0.75, 0.0, 1.0,  0.0,  0.0,
+        0.0,  0.0,  0.0,-0.35,-1.0,  0.0,-0.7,  0.25, 0.0,
+        -0.2, 0.15, 0.0, 0.35, 0.65, 0.0,-0.85, 0.9,  0.0
+        ]);
+        var geometry2 = new THREE.BufferGeometry();
+        const vertices2 = new Float32Array([
+           0.15,-0.95, 0.0, 0.90,-0.7,  0.0, 0.65, 0.10, 0.0, 
+        ]);
+
+        var colors = new Uint8Array([
+            255, 0, 0,
+            0, 255, 0,
+            0, 0, 255,
+        ]);
+
+        geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3, true));
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        geometry2.setAttribute('position', new THREE.BufferAttribute(vertices2, 3));
+        var material = new THREE.MeshBasicMaterial({ color: 0x000000, side :  THREE.DoubleSide });
+        var material2 = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe :  true });
+        //const material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors });
+        var triangle = new THREE.Mesh(geometry, material);
+        var triangle2 = new THREE.Mesh(geometry2, material2);
+        scene.add(triangle);
+        scene.add(triangle2);
+        camera.position.z = 5;
+
+        function render() {
+            requestAnimationFrame(render);
+            //triangle.rotation.x += 0.01;
+            //triangle.rotation.y += 0.01;
+            renderer.render(scene, camera)
+
+        }
+
+        render()
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
