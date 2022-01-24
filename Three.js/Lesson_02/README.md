@@ -34,12 +34,12 @@ Other camera controls are available. Try some of them, for example the Trackball
 
 # Lighting and materials
 Let's now add lights to the scene.
-Turn the rotation back on and visualize the cube without the wireframe option.
+Get back to the perspective camera, disable the wireframe and turn the rotation of the cube back on.
 Create a DirectionalLight (https://threejs.org/docs/#api/en/lights/DirectionalLight) at position 0.5.0 with color 0xffffff and intensity 1.0. Do not forget to add it to the scene. Do you see any changes in the scene? In order for the object to interact with light it is necessary to use a material of a different type from MeshBasicMaterial. Replace the MeshBasicMaterial with a MeshPhongMaterial material and observe what happens.
 
 ``` html
 const material = new THREE.MeshPhongMaterial({
-            color: '#006063',
+            	color: '#006063',
 		specular: '#a9fcff',
 		shininess: 100
             });
@@ -60,7 +60,7 @@ Add the ambient light and directional light from the previous exercize located b
 
 Optional/HomeWork: Apply to the first sphere a MeshLambertMaterial type material with the same characteristics as sphere 2. In the Lambertian-type material, remove the specular and shininess components. What do you observe? Lambertian materials scatter light evenly in all directions so the specular coefficient and brightness are ignored.
 
-Modify the properties of the spheres tousing some values from the following table (note that the brightness must be multiplied by 256) to see the effects of differente material. See the example:
+Modify the properties of the spheres by selecting some values from the following table (note that the brightness must be multiplied by 256) to see the effects of different materials. See the example:
 
 ``` html
 const emerald = new THREE.MeshPhongMaterial({
@@ -87,10 +87,10 @@ http://www.realtimerendering.com/teapot/
 
 http://www.lighthouse3d.com/2014/01/webgl-basic-material-list-from-teapots-c/
 
-Optional/HomeWork: Add the following ambient lights, all pointing to the origin of the scene
+Optional/HomeWork: Add the following lights, all pointing to the origin of the scene: 
 Red directional light in position (-5,0,0)
 Blue directional light in position (5,0,0)
-Green spotlight light in position (0,0,-5)
+Green spotlight light in position (0,0,-5) with angle Math.PI/20 and target object in (-2.5,0,0)
 
 # Transparency
 In the previous example (two spheres located at x=-2.5 and x=2.5) add spheres (or cubes) with a slightly larger size around original spheres.
@@ -113,5 +113,8 @@ View the transformation matrices of the parallelepiped and of one of the spheres
 
 # Transformations (rotations)
 Create an object that represents a coordinate system using three red, green, and blue cylinders (CylinderGeometry) for each axis. The three cylinders must belong to a single object named axis. Add this object to the previous scene and replace the spheres with cylinders with radius 0.5 and height 0.2.
+You may also see the axisHelper geometry as an alternative for visualization of the axes.
 
 ![paralelepípedo2](./paralelepípedo2.png)
+
+Now add an animation to move the "car" along a predefined circuit (for example perform a rotation of radius 1 around the point (0,0,-1)).
